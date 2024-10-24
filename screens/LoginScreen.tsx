@@ -38,7 +38,7 @@ export default function LoginScreen( {navigation}: LoginProps ) {
 
                 await AsyncStorage.setItem('userName', response.data.name)
                 await AsyncStorage.setItem('userProfile', response.data.profile)
-
+                console.log('Login efetuado com sucesso:', response.data);
 
                 if (response.data.profile === 'admin') {
                     //navegar para tela home
@@ -51,7 +51,7 @@ export default function LoginScreen( {navigation}: LoginProps ) {
                 } else if (response.data.profile === 'filial') {
                     //navegar para a tela movimentação
 
-                } else {
+                } else { (response.data.profile === 'motorista')
                     //navegar tela movimentação motoristas
                 }
             })

@@ -3,6 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
+import UserList from './screens/UserList';
+import CreateUser from './screens/CreateUser';
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -11,7 +14,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{header: ()=> <></>}}/>
         <Stack.Screen name="Home" component={HomeScreen} options={{header: ()=> <></>}}/>
-
+        <Stack.Screen name="UserList" component={UserList} options={{header: ()=> <></>}}/>
+        <Stack.Screen name="CreateUser" component={CreateUser} options={{header: ()=> <></>}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
