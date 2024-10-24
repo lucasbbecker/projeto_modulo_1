@@ -64,22 +64,24 @@ export default function LoginScreen( {navigation}: LoginProps ) {
     useEffect(() => {
 
         const loginStatus = async () => {
-
-            const userName = await AsyncStorage.getItem('userName')
-            const userProfile = await AsyncStorage.getItem('userProfile')
-
-            if (userName && userProfile) {
-                navigation.dispatch(
-                    CommonActions.reset({
-                        index: 0,
-                        routes: [{ name: 'Home' }]
-                    })
-                )
+            try {
+                const userName = await AsyncStorage.getItem('userName');
+                const userProfile = await AsyncStorage.getItem('userProfile');
+                if (userName && userProfile) {
+                    navigation.dispatch(
+                        CommonActions.reset({
+                            index: 0,
+                            routes: [{ name: 'Home' }],
+                        })
+                    );
+                }
+            } catch (error) {
+                console.log('Erro ao verificar status de login:', error);
             }
-        }
+        };
 
         loginStatus()
-    }, [])
+    }, [navigation])
 
     return (
         <View style={styles.container}>
