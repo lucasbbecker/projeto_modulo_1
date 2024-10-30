@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import { Avatar, IconButton} from 'react-native-paper';
+import { NavigationProp } from "@react-navigation/native";
 
 interface User {
     id: string;
@@ -12,9 +13,12 @@ interface User {
     isActive: boolean;
 }
 
-export default function UserList() {
-    const [users, setUsers] = useState<User[]>([]);
-    const navigation = useNavigation();    
+type CreationProps = {
+    navigation: NavigationProp<any>
+}
+
+export default function UserList({ navigation }: CreationProps) {
+    const [users, setUsers] = useState<User[]>([]);  
 
     useEffect(() => {
         axios.get(process.env.EXPO_PUBLIC_API_URL + '/users')
@@ -44,19 +48,19 @@ export default function UserList() {
     const renderItem = ({ item }: { item: User }) => (
         <View style={[styles.card, item.isActive ? styles.activeCard : styles.inactiveCard]}>
             <View style={styles.row}>
-            {item.profile === 'Motorista' ? (
+            {item.profile === 'motorista' ? (
                 <Avatar.Icon size={50} icon="car" color='black' style={{ backgroundColor: 'white' }}/>
             ) : (
                 <Avatar.Icon size={50} icon="office-building" color='black' style={{ backgroundColor: 'white' }}/>
             )}
             <Switch
-                value={item.isActive}
+                value={!item.isActive}
                 trackColor={{ false: 'red', true: 'green' }}
                 onValueChange={() => toggleUserStatus(item.id, item.isActive)}
             />
             </View>
             <Text style={styles.fontCard}>{item.name}</Text>
-            <Text style={styles.fontCard}>Status: {item.isActive ? 'Ativo' : 'Inativo'}</Text>
+            <Text style={styles.fontCard}>Status: {item.isActive ? 'Inativo' : 'Ativo'}</Text>
         </View>
     );
 
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     card: {
-        width: '43%',
+        width: '46%',
         padding: 16,
         margin: 8,
         borderWidth: 1,
@@ -103,10 +107,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
     },
     activeCard: {
-        borderColor: 'green',
+        borderColor: 'red',
     },
     inactiveCard: {
-        borderColor: 'red',
+        borderColor: 'green',
     },
     backButton: {
         margin: 10,
