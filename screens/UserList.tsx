@@ -67,7 +67,7 @@ export default function UserList({ navigation }: CreationProps) {
         <View style={styles.container}>
             <IconButton
                 icon="arrow-left"
-                size={30}
+                size={22}
                 onPress={() => navigation.goBack()}
                 style={styles.backButton}
             />
