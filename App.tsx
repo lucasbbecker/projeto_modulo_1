@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import UserList from './screens/UserList';
 import CreateUser from './screens/CreateUser';
 import ProductsList from './screens/ProductsList';
+import MovimentList from './screens/MovimentList';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name="UserList" component={UserList} options={{header: ()=> <></>}}/>
         <Stack.Screen name="CreateUser" component={CreateUser} options={{header: ()=> <></>}}/>
         <Stack.Screen name="ProductsList" component={ProductsList} options ={{header: ()=> <></>}}/>
+        <Stack.Screen name="MovimentList" component={MovimentList} options ={{header: ()=> <></>}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

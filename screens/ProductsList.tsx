@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, FlatList, Image, StyleSheet } from 'react-native';
 import axios from 'axios';
 import Header from '../components/Header';
-
+import { IconButton } from 'react-native-paper';
+import { NavigationProp } from "@react-navigation/native";
 
 interface Product {
   id: number;
@@ -13,11 +14,14 @@ interface Product {
   description: string;
 }
 
-const ProductsList: React.FC = () => {
+type ProductsListProps = {
+  navigation: NavigationProp<any>;
+};
+
+const ProductsList: React.FC<ProductsListProps> = ({ navigation }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  // Função para buscar os produtos da API
   const fetchProducts = async () => {
     try {
       const response = await axios.get<Product[]>(process.env.EXPO_PUBLIC_API_URL + `/products`, {
@@ -35,31 +39,40 @@ const ProductsList: React.FC = () => {
 
   return (
     <View style={styles.container}>
-        <Header />
-      <View style={styles.conteinerProducts}>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Buscar por nome ou filial"
-        value={searchQuery}
-        onChangeText={setSearchQuery}
+      {/* Botão de Voltar */}
+      <IconButton
+        icon="arrow-left"
+        size={22}
+        onPress={() => navigation.goBack()}
+        style={styles.backButton}
       />
 
-      <FlatList
-        data={products}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(item, index) => `${item.product_name}-${index}`}
-        renderItem={({ item }) => (
-          <View style={styles.productContainer}>
-            <Image source={{ uri: item.image_url }} style={styles.productImage} />
-            <View style={styles.productInfo}>
-              <Text style={styles.productName}>{item.product_name}</Text>
-              <Text style={styles.productBranch}>Filial: {item.branch_name}</Text>
-              <Text style={styles.productQuantity}>Quantidade disponível: {item.quantity}</Text>
-              <Text style={styles.productDescription}>{item.description}</Text>
+      <Header />
+
+      <View style={styles.containerProducts}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Buscar por nome ou filial"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+
+        <FlatList
+          data={products}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item, index) => `${item.product_name}-${index}`}
+          renderItem={({ item }) => (
+            <View style={styles.productContainer}>
+              <Image source={{ uri: item.image_url }} style={styles.productImage} />
+              <View style={styles.productInfo}>
+                <Text style={styles.productName}>{item.product_name}</Text>
+                <Text style={styles.productBranch}>Filial: {item.branch_name}</Text>
+                <Text style={styles.productQuantity}>Quantidade disponível: {item.quantity}</Text>
+                <Text style={styles.productDescription}>{item.description}</Text>
+              </View>
             </View>
-          </View>
-        )}
-      />
+          )}
+        />
       </View>
     </View>
   );
@@ -72,8 +85,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
-  conteinerProducts: {
+  containerProducts: {
     padding: 16,
+    marginBottom: 65,
+  },
+  backButton: {
+    margin: 10,
+    alignSelf: 'flex-start',
   },
   searchInput: {
     height: 40,
@@ -96,14 +114,13 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     borderColor: '#000',
     borderWidth: 0.5,
-
   },
   productImage: {
     width: 80,
     height: 80,
     borderRadius: 8,
     alignSelf: 'center',
-  },    
+  },
   productInfo: {
     flex: 1,
     marginLeft: 12,

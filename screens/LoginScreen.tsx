@@ -15,10 +15,16 @@ const isValidEmail = (email: string) => {
 };
 
 
-export default function LoginScreen( {navigation}: LoginProps ) {
+export default function LoginScreen({ navigation }: LoginProps) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState('')
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const profileRouteMap: Record<string, string> = {
+        admin: 'Home',
+        filial: 'MovimentList',
+        motorista: '', // Substitua pelo nome real da rota
+    };
 
     const handleLogin = () => {
         if (!email || !password) {
@@ -29,20 +35,11 @@ export default function LoginScreen( {navigation}: LoginProps ) {
             setErrorMessage('Formato de e-mail inválido');
             return;
         }
-        axios.post(process.env.EXPO_PUBLIC_API_URL + `/login`, {
-            email,
-            password,
-        })
+        axios.post(`${process.env.EXPO_PUBLIC_API_URL}/login`, { email, password })
             .then(async (response) => {
                 await AsyncStorage.setItem('userName', response.data.name);
                 await AsyncStorage.setItem('userProfile', response.data.profile);
                 console.log('Login efetuado com sucesso:', response.data);
-
-                const profileRouteMap: Record<string, string> = {
-                    admin: 'Home',
-                    filial: '',
-                    motorista: '', // Substitua pelo nome real da rota
-                };
 
                 const routeName = profileRouteMap[response.data.profile];
                 if (routeName) {
@@ -63,15 +60,17 @@ export default function LoginScreen( {navigation}: LoginProps ) {
     useEffect(() => {
         const checkLoginStatus = async () => {
             try {
-                const userName = await AsyncStorage.getItem('userName');
                 const userProfile = await AsyncStorage.getItem('userProfile');
-                if (userName && userProfile) {
-                    navigation.dispatch(
-                        CommonActions.reset({
-                            index: 0,
-                            routes: [{ name: 'Home' }],
-                        })
-                    );
+                if (userProfile) {
+                    const routeName = profileRouteMap[userProfile];
+                    if (routeName) {
+                        navigation.dispatch(
+                            CommonActions.reset({
+                                index: 0,
+                                routes: [{ name: routeName }],
+                            })
+                        );
+                    }
                 }
             } catch (error) {
                 console.log('Erro ao verificar status de login:', error);
@@ -80,7 +79,6 @@ export default function LoginScreen( {navigation}: LoginProps ) {
 
         checkLoginStatus();
     }, [navigation]);
-
 
     return (
         <View style={styles.container}>
