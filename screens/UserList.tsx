@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Switch, StyleSheet, TouchableOpacity } from 'react-native';
 import axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
 import Header from '../components/Header';
 import { Avatar, IconButton} from 'react-native-paper';
 import { NavigationProp } from "@react-navigation/native";
