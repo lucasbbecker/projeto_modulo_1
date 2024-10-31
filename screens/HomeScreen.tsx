@@ -37,7 +37,7 @@ export default function HomeScreen( {navigation}: LogoutProps) {
                     subtitle="Clique para visualizar todos os produtos em estoque"
                     subtitleNumberOfLines={2}
                     left={(props) => <Avatar.Icon {...props} icon="warehouse" size={50} style={{ backgroundColor: 'black' }}/>}
-                    right={(props) => <IconButton {...props} icon="arrow-right-bold-circle" size={55} onPress={() => {}} />}
+                    right={(props) => <IconButton {...props} icon="arrow-right-bold-circle" size={55} onPress={() => navigation.navigate('ProductsList')} />}
                     style={styles.cardStyle}
                 />
                 <Card.Title

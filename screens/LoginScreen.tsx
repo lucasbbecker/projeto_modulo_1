@@ -29,41 +29,39 @@ export default function LoginScreen( {navigation}: LoginProps ) {
             setErrorMessage('Formato de e-mail inválido');
             return;
         }
-
-        axios.post(process.env.EXPO_PUBLIC_API_URL + '/login', {
+        axios.post(process.env.EXPO_PUBLIC_API_URL + `/login`, {
             email,
-            password
+            password,
         })
             .then(async (response) => {
-
-                await AsyncStorage.setItem('userName', response.data.name)
-                await AsyncStorage.setItem('userProfile', response.data.profile)
+                await AsyncStorage.setItem('userName', response.data.name);
+                await AsyncStorage.setItem('userProfile', response.data.profile);
                 console.log('Login efetuado com sucesso:', response.data);
 
-                if (response.data.profile === 'admin') {
-                    //navegar para tela home
+                const profileRouteMap: Record<string, string> = {
+                    admin: 'Home',
+                    filial: '',
+                    motorista: '', // Substitua pelo nome real da rota
+                };
+
+                const routeName = profileRouteMap[response.data.profile];
+                if (routeName) {
                     navigation.dispatch(
                         CommonActions.reset({
                             index: 0,
-                            routes: [{ name: 'Home' }],
+                            routes: [{ name: routeName }],
                         })
-                    )
-                } else if (response.data.profile === 'filial') {
-                    //navegar para a tela movimentação
-
-                } else { (response.data.profile === 'motorista')
-                    //navegar tela movimentação motoristas
+                    );
                 }
             })
             .catch((error) => {
                 console.log('Erro:', error.response ? error.response.data : error.message);
-                setErrorMessage('Credenciais incorretas, tente novamente.')
-            })
-    }
+                setErrorMessage('Credenciais incorretas, tente novamente.');
+            });
+    };
 
     useEffect(() => {
-
-        const loginStatus = async () => {
+        const checkLoginStatus = async () => {
             try {
                 const userName = await AsyncStorage.getItem('userName');
                 const userProfile = await AsyncStorage.getItem('userProfile');
@@ -80,8 +78,9 @@ export default function LoginScreen( {navigation}: LoginProps ) {
             }
         };
 
-        loginStatus()
-    }, [navigation])
+        checkLoginStatus();
+    }, [navigation]);
+
 
     return (
         <View style={styles.container}>
