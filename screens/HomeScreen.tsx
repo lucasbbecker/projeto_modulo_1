@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import Header from '../components/Header';
-import { StatusBar } from 'react-native';
 import { Avatar, Card, IconButton } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CommonActions , NavigationProp } from '@react-navigation/native';
