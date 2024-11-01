@@ -85,7 +85,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
                 style={{ height: 350, width: 350}}
                 autoPlay loop
             />
-            <Text style={styles.title}>Login</Text>
+            <Text style={styles.title}>PlusHealth</Text>
             <TextInput
                 style={styles.input}
                 placeholder="Email"
