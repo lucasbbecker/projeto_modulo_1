@@ -7,7 +7,8 @@ Sumário
 3. Configuração e Execução do Projeto
 4. Funcionalidades
 5. Estrutura do Projeto
-6. Contribuições e Melhorias Futuras
+6. Telas
+7. Contribuições e Melhorias Futuras
 
 
 1.Introdução
@@ -94,7 +95,45 @@ A organização do projeto segue a estrutura modular para facilitar a expansão 
     - MovementList.tsx
     - MovementListDriver.tsx
   .env
-  
+
+6. Telas
+
+Login
+
+![Imagem do WhatsApp de 2024-11-01 à(s) 20 28 51_4ecccfe2](https://github.com/user-attachments/assets/c234b20e-28d7-4b83-a818-89081be897b7)
+
+Tela do Administrador:
+
+![Imagem do WhatsApp de 2024-11-01 à(s) 20 29 16_9d1aeb56](https://github.com/user-attachments/assets/3e387e97-d61e-49b5-b193-171d55185975)
+
+Produtos cadastrados:
+
+![Imagem do WhatsApp de 2024-11-01 à(s) 20 29 35_b80b4e74](https://github.com/user-attachments/assets/3914f48e-098d-4af8-9f1c-83124143baf7)
+
+Usuários cadastrados:
+
+![Imagem do WhatsApp de 2024-11-01 à(s) 20 29 59_1625fecd](https://github.com/user-attachments/assets/a9d41141-050d-46dc-9338-55d986011dbd)
+
+Cadastrar usuário:
+
+![Imagem do WhatsApp de 2024-11-01 à(s) 20 31 06_cf9f0d21](https://github.com/user-attachments/assets/781cd0a3-8070-4517-848d-b62ef9b4c804)
+
+Tela de movimentações(Filial):
+
+![Imagem do WhatsApp de 2024-11-01 à(s) 20 31 40_8921c200](https://github.com/user-attachments/assets/be7ed568-e115-445b-8675-6368495b704b)
+
+Tela de criar movimentação:
+
+![Imagem do WhatsApp de 2024-11-01 à(s) 20 40 40_9e7e6842](https://github.com/user-attachments/assets/4aee23bb-dcda-482a-a478-fd893a09d0c3)
+
+Tela de Movimentações(Motorista):
+
+![Imagem do WhatsApp de 2024-11-01 à(s) 20 41 27_a1dd425d](https://github.com/user-attachments/assets/fb228b5d-2759-41bd-93b7-5339ffa79062)
+
+Mapa:
+
+![Imagem do WhatsApp de 2024-11-01 à(s) 20 41 46_d5ed4edc](https://github.com/user-attachments/assets/4b568cf9-0c75-4304-991f-eb7e19dc8d6d)
+
 
 Contribuições e Melhorias Futuras
 Sugestões de melhorias futuras incluem:
