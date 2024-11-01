@@ -14,7 +14,6 @@ const isValidEmail = (email: string) => {
     return re.test(email);
 };
 
-
 export default function LoginScreen({ navigation }: LoginProps) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,7 +22,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
     const profileRouteMap: Record<string, string> = {
         admin: 'Home',
         filial: 'MovementList',
-        motorista: '', // Substitua pelo nome real da rota
+        motorista: 'MovementListDriver',
     };
 
     const handleLogin = () => {
@@ -39,7 +38,6 @@ export default function LoginScreen({ navigation }: LoginProps) {
             .then(async (response) => {
                 await AsyncStorage.setItem('userName', response.data.name);
                 await AsyncStorage.setItem('userProfile', response.data.profile);
-                console.log('Login efetuado com sucesso:', response.data);
 
                 const routeName = profileRouteMap[response.data.profile];
                 if (routeName) {
@@ -140,10 +138,9 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         width: '85%'
-    } ,
+    },
     errorText: {
         color: '#ff0000',
         marginTop: 10
     }
 });
-
