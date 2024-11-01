@@ -8,6 +8,8 @@ import CreateUser from './screens/CreateUser';
 import ProductsList from './screens/ProductsList';
 import MovementList from './screens/MovementList';
 import CreateMoviment from './screens/CreateMoviment';
+import MovementListDriver from './screens/MovementListDriver';
+import Mapa from './screens/Mapa';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +24,8 @@ export default function App() {
         <Stack.Screen name="ProductsList" component={ProductsList} options ={{header: ()=> <></>}}/>
         <Stack.Screen name="MovementList" component={MovementList} options ={{header: ()=> <></>}}/>
         <Stack.Screen name="CreateMoviment" component={CreateMoviment} options ={{header: ()=> <></>}}/>
+        <Stack.Screen name="MovementListDriver" component={MovementListDriver} options ={{header: ()=> <></>}}/>
+        <Stack.Screen name="Mapa" component={Mapa}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
