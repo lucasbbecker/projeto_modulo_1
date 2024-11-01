@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }: LoginProps) {
 
     const profileRouteMap: Record<string, string> = {
         admin: 'Home',
-        filial: 'MovimentList',
+        filial: 'MovementList',
         motorista: '', // Substitua pelo nome real da rota
     };
 
