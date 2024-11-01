@@ -136,7 +136,7 @@ Mapa:
 
 
 Contribuições e Melhorias Futuras
+
 Sugestões de melhorias futuras incluem:
 
-Criar componentes para os cards e para o botão de Logout
-Adicionar animações ao mudar de tela e ao mudar a fase das movimentações de mercadoria.
+Criar componentes para os cards e para o botão de Logout e adicionar animações ao mudar de tela e ao mudar a fase das movimentações de mercadoria.
