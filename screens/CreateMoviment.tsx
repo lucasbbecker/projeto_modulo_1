@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, Alert, StatusBar, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Alert, StatusBar, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import axios, { AxiosError } from 'axios';
 import { Picker } from '@react-native-picker/picker';
 import Header from '../components/Header';
@@ -154,8 +154,13 @@ const CreateMoviment = () => {
                         onChangeText={(text) => setObservations(text)}
                         style={styles.input}
                     />
+                    <TouchableOpacity
+                        style={styles.addButton}
+                        onPress={handleSubmit}
+                    >
+                        <Text style={styles.addButtonText}>Criar</Text>
+                    </TouchableOpacity>
 
-                    <Button title="Cadastrar" onPress={handleSubmit} />
                 </View>
             </View>
         </SafeAreaView>
@@ -198,6 +203,20 @@ const styles = StyleSheet.create({
         height: 60,
         width: '100%',
     },
+    addButton: {
+        backgroundColor: '#00e070',
+        padding: 16,
+        borderRadius: 8,
+        alignItems: 'center',
+        marginBottom: 10,
+        marginTop: 20,
+    },
+    addButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
 });
 
 export default CreateMoviment;
+
